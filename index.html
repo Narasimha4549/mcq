@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Question Paper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        #page1 h2 {
+            text-align: center;
+            color: red;
+        }
+        #page2 h2 {
+            text-align: center;
+            color: red;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            margin-bottom: 10px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #1fc564;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        } 
+        button:hover {
+            background-color:#1fc564;
+        }
+    .anc-btn {
+    display:flex;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration-line: none;
+    width: fit-content;
+  }
+
+  .sub{
+    margin-left: 1070px;
+  }
+
+        
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" id="quiz-container">
+        <div id="page1">
+            <h2>MCQ Question Paper - Page 1</h2>
+            <form action="" class="form col-md-4">
+                <label for="">Name :</label>
+                <input type="text" placeholder="" class="form-control">
+                <label for="">E-Mail :</label>
+                <input type="text" class="form-control">
+                <label for="">Mobile no :</label>
+                <input type="text" class="form-control">
+                <label for="">Address:</label>
+                <input type="text" class="form-control">
+                <label for="">Course :</label>
+                <input type="text" class="form-control">
+                <label for="">Total Marks :</label>
+            </form>
+            <hr>
+            <div id="questions1"></div>
+            <div class="button-container">
+                <button class="anc-btn" onclick="goToPage2()">Next</button>
+            </div>  
+        </div>
+        <div id="page2" style="display: none;">
+            <h2>MCQ Question Paper - Page 2</h2><hr>
+            <div id="questions2" style="transition-timing-function: step-start;"></div>
+            <div class="button-container">
+                <button class="pre" onclick="goToPage1()">Previous</button>
+                <button class="sub"  onclick="submitQuiz()">Submit <a href="./quizresult.html"></a> </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Prepare questions for display
+        const questions = [
+            { question: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Lisbon"], answer: 2 },
+            { question: "What is the largest planet in our solar system?", options: ["Venus", "Mars", "Jupiter", "Saturn"], answer: 2 },
+            // Add more questions as needed
+            { question: " What does HTML stand for?", options: [" Home Text Markup Language", "Home Tool Markup Language", "Hyper Text Markup Language", "Hyper Transfer Markup Language"], answer: 3 },
+            { question: " Which programming language is primarily used for developing Android apps?", options: ["Swift", "Kotlin", "Python", "Java"], answer: 4 },
+            { question: "What does SQL stand for?", options: ["Simple Query Language", "Structured Query Language", "Secured Query Language", "Standard Query Language"], answer: 2 },
+            { question: " Which tag is used to create a hyperlink in HTML?", options: [" link", "a", "href", " url"], answer: 1 },
+            { question: ` What is the output of 5 + "5" in JavaScript?`, options: [" 10", "55", "Error", "Undefined"], answer: 2 },
+            { question: "What is the file extension of Python files?", options: [" .pt", ".pyth", ".pyt", ".py"], answer: 4},
+            { question: " Which device is used as the brain of the computer?", options: ["RAM", "CPU", "Hard Drive", " Motherboard"], answer: 2},
+            { question: "What is the binary equivalent of the decimal number 5?", options: ["101", "110", "111", "100"], answer: 1},
+            { question: "Which one is a version control system?", options: ["Docker", " Git", "Kubernetes", " VSCode"], answer: 2},
+            { question: " What does CSS stand for?", options: [" Computer Style System", " Cascading Sheet Styles", " Cascading Style Sheets", "Creative Style Sheets"], answer: 3},
+            { question: "Which language is commonly used for data science and machine learning?", options: ["PHP", "C++", "Python","JavaScript"], answer: 3},
+            { question: " Which tag is used to add an image in HTML?", options: ["img", "src", "picture","media"], answer: 1},
+            { question: "What is the full form of HTTP?", options: [" HyperText Transfer Protocol", " HighText Transfer Protocol", "HyperTransfer Text Protocol"," High Transmission Text Protocol"], answer: 1},
+            { question: "Which of these is a NoSQL database?", options: ["MYSQL", "MongoDB", " PostgreSQL"," Oracle"], answer: 2},
+            { question: "What is used to style web pages?", options: ["HTML", "CSS", " JavaScript","SQL"], answer: 2},
+            { question: "What is the correct extension for a JavaScript file?", options: [".js", ".java", ".JavaScript",".jsc"], answer: 1},
+            { question: "Which one of these is a valid looping structure in Python?", options: ["for", "repeat", "iterate","do-while"], answer: 1},
+            { question: "Which of these is a front-end framework?", options: ["Django", "Flask", "React"," Laravel"], answer: 2},
+            { question: " What is the primary purpose of an operating system?", options: ["To compile programs", "To connect to the internet", " To manage computer hardware and software","To browse the web"], answer: 3},
+            { question: "Which programming language is often used for Artificial Intelligence?", options: ["Ruby", "Python", "JavaScript","Swift"], answer: 2},
+            { question: "What is the default port for HTTP?", options: ["80", "443", "22","8080"], answer: 1},
+            { question: "Which protocol is used to send emails?", options: ["SMPT", "HTTP", "FTP","SNTP"], answer: 1},
+            { question: "What is the purpose of a firewall?", options: ["To cool the processor", "To protect a network from unauthorized access", " To clean viruses","To increase system speed"], answer: 2},
+            { question: " What does DNS stand for?", options: [" Domain Name System", "Distributed Network System", " Data Network Server","Digital Name Service"], answer: 1},
+            { question: "What is the smallest unit of data in a computer?", options: ["Byte", "Kilobyte", "Megabyte","Bit"], answer: 4},
+            { question: "Which of these is NOT a programming language?", options: ["Java", "Python","CSS","Swift"], answer: 3},
+            { question: " What is the primary function of a database?", options: ["To manage files", " To store and retrieve data","To connect computers","To enhance graphic rendering"], answer: 2},
+            { question: " What does IDE stand for in software development?", options: [" International Debugging Engine", "Internal Development Engine","Integrated Data Encoder","Integrated Development Environment"], answer: 4},
+        ];
+
+        // Divide questions into two pages
+        const page1Questions = questions.slice(0, 15);
+        const page2Questions = questions.slice(15);
+
+        // Render questions
+        function renderQuestions(questions, containerId, startIndex) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ""; // Clear existing content
+            questions.forEach((q, index) => {
+                const globalIndex = startIndex + index; // Adjust for global index
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `
+                    <p><strong>Q${globalIndex + 1}: ${q.question}</strong></p>
+                    <div class="options">
+                        ${q.options
+                            .map(
+                                (option, idx) => `
+                                <label>
+                                    <input type="radio" name="q${globalIndex}" value="${idx}">
+                                    ${option}
+                                </label>
+                                <br>`
+                            )
+                            .join("")}
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        renderQuestions(page1Questions, "questions1", 0);
+        renderQuestions(page2Questions, "questions2", 15);
+
+        // Navigation
+        function goToPage1() {
+            document.getElementById("page1").style.display = "block";
+            document.getElementById("page2").style.display = "none";
+            window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // Scroll to top when switching pages
+    });
+        }
+
+        function goToPage2() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+            window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // Scroll to top when switching pages
+            });
+        }
+
+        function submitQuiz() {
+    let score = 0;
+
+    // Loop through all questions
+    questions.forEach((q, index) => {
+        // Find all radio buttons for this question
+        const radios = document.getElementsByName(`q${index}`);
+        
+        // Check which radio button is selected
+        radios.forEach((radio) => {
+            if (radio.checked && (parseInt(radio.value) + 1) === q.answer) {
+                score++;
+            }
+        });
+    });
+
+    alert(`Quiz submitted! Your score is ${score} / ${questions.length}.`);
+}
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
